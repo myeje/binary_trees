@@ -1,6 +1,8 @@
 #ifndef _BINARY_TREES_H_
 #define _BINARY_TREES_H_
 
+#define MAX_PATH_LENGTH 1024
+
 #include <stddef.h>
 #include <stdlib.h>
 

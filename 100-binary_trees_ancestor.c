@@ -3,46 +3,39 @@
 /**
  * binary_trees_ancestor - finds the lowest common ancestor of two nodes.
  * @first: A pointer to the first node.
- * @second: A pointer to the second node.
+ * @second: A pointer to the second .
  *
  * Return: a pointer to the lowest common ancestor node.
  */
-binary_tree_t *binary_trees_ancestor(const binary_tree_t *first, const binary_tree_t *second)
+binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
+				     const binary_tree_t *second)
 {
 	binary_tree_t *first_path[1024];
 	binary_tree_t *second_path[1024];
-	size_t i, m;
-	size_t l, u;
+	int i, m;
 
 	if (!first || !second)
 	{
 		return (NULL);
 	}
 
-	while (first)
+	for (i = 0; first; i++)
 	{
-		first_path[i++] = (binary_tree_t *)first;
+		first_path[i] = (binary_tree_t *)first;
 		first = first->parent;
 	}
 
-	while (second)
+	for (m = 0; second; m++)
 	{
-		second_path[m++] = (binary_tree_t *)second;
+		second_path[m] = (binary_tree_t *)second;
 		second = second->parent;
 	}
 
-	l = i - 1, u = m - 1;
-
-	while (l > 0 && u >0 &&first_path[l - 1] == second_path[u - 1])
+	while (i > 0 && m > 0 && first_path[i - 1] == second_path[m - 1])
 	{
-		l--;
-		u--;
+		i--;
+		m--;
 	}
 
-	if (l == 0 || u == 0)
-	{
-		return (NULL);
-	}
-
-	return (binary_tree_t *)first_path[l - 1];
+	return (first_path[i]);
 }
