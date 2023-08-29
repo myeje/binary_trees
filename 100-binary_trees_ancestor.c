@@ -12,7 +12,7 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 {
 	binary_tree_t *first_path[MAX_PATH];
 	binary_tree_t *second_path[MAX_PATH];
-	int i, m;
+	size_t i, m;
 
 	if (!first || !second)
 	{
