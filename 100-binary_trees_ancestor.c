@@ -10,8 +10,8 @@
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 				     const binary_tree_t *second)
 {
-	binary_tree_t *first_path[1024];
-	binary_tree_t *second_path[1024];
+	binary_tree_t *first_path[MAX_PATH];
+	binary_tree_t *second_path[MAX_PATH];
 	int i, m;
 
 	if (!first || !second)
@@ -37,10 +37,5 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 		m--;
 	}
 
-	if (i == 0 && m == 0)
-	{
-		return (NULL);
-	}
-
-	return (first_path[i - 1]);
+	return (first_path[i]);
 }
