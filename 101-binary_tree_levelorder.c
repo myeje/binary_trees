@@ -14,7 +14,7 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 	binary_tree_t *current;
 
 	if (!tree || !func)
-	       return;
+		return;
 
 	pop[i++] = (binary_tree_t *) tree;
 

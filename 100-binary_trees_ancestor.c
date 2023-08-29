@@ -37,5 +37,8 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 		m--;
 	}
 
+	if (!i && !m)
+		return (NULL);
+
 	return (first_path[i]);
 }
