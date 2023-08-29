@@ -37,7 +37,7 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 		m--;
 	}
 
-	if (!i && !m)
+	if (i == 0 && m == 0)
 	{
 		return (NULL);
 	}
