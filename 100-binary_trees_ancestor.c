@@ -42,5 +42,5 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 		return (NULL);
 	}
 
-	return (first_path[i]);
+	return (first_path[i - 1]);
 }
