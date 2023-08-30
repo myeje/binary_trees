@@ -59,6 +59,7 @@ bst_t *array_to_bst(int *array, size_t size);
 bst_t *bst_search(const bst_t *tree, int value);
 bst_t *bst_remove(bst_t *root, int value);
 int binary_tree_is_avl(const binary_tree_t *tree);
+avl_t *avl_insert(avl_t **tree, int value);
 
 /*Print function prototype*/
 void binary_tree_print(const binary_tree_t *tree);
@@ -73,5 +74,9 @@ bst_t *bst_del(bst_t *root, bst_t *ptr);
 int max(int a, int b);
 int binary_tree_is_avl_recursive(const binary_tree_t *tree, int min, int max);
 int binary_height(const binary_tree_t *tree);
-
+size_t avl_height(const avl_t *node);
+size_t height(const binary_tree_t *tree);
+int avi_balance_factor(const binary_tree_t *tree);
+avl_t *avl_insert_recursione(avl_t **tree, avl_t *parent, avl_t **pop, int value);
+avl_t *avl_insert(avl_t **tree, int value);
 #endif
