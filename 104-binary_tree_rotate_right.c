@@ -4,7 +4,7 @@
  * binary_tree_rotate_right - performs a right-rotation on a binary tree.
  * @tree: a pointer to the root of the tree.
  *
- * Return a pointer to the new root node.
+ * Return: a pointer to the new root node.
  */
 binary_tree_t *binary_tree_rotate_right(binary_tree_t *tree)
 {
