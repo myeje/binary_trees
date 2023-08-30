@@ -28,19 +28,19 @@ size_t binary_tree_height(const binary_tree_t *tree)
 
 
 /**
- * binary_tree_count_nodes - counts number of nodes
+ * binary_tree_count - counts number of nodes
  * @tree: A pointer to the root node of the tree to measure the height.
  *
  * Return: return 0 or the height.
 */
-size_t binary_tree_count_nodes(const binary_tree_t *tree)
+size_t binary_tree_count(const binary_tree_t *tree)
 {
 	if (tree == NULL)
 	{
 		return (0);
 	}
 
-	return (binary_tree_count_nodes(tree->left) + binary_tree_count_nodes(tree->right) + 1);
+	return (binary_tree_count(tree->left) + binary_tree_count(tree->right) + 1);
 }
 
 /**
@@ -61,7 +61,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	}
 
 	height = binary_tree_height(tree);
-	actual = binary_tree_count_nodes(tree);
+	actual = binary_tree_count(tree);
 	outcome = pow(2, height) - 1;
 
 	return (actual == outcome);
