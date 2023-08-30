@@ -31,7 +31,12 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 		second = second->parent;
 	}
 
-	if (!i && !m)
+	if (!i || !m)
+	{
+		return (NULL);
+	}
+
+	if (first_path[i - 1] != second_path[m - 1])
 	{
 		return (NULL);
 	}
