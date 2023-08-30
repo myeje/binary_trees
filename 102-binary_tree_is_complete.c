@@ -8,42 +8,38 @@
  */
 int binary_tree_is_complete(const binary_tree_t *tree)
 {
-	int i = 0, m = 0, j;
-	binary_tree_t *pop[MAX_PATH];
-	binary_tree_t *current;
+	int front = 0, rear = 0, null_seen = 0;
+	binary_tree_t *current, **queue;
 
-	if (!tree)
+	if (tree == NULL)
+		return 0;
+
+	queue = malloc(sizeof(binary_tree_t *) * 1000);
+	if (queue == NULL)
+		return 0;
+
+
+	queue[rear++] = (binary_tree_t *)tree;
+
+	while (front < rear)
 	{
-		return (0);
-	}
-
-	pop[i++] = (binary_tree_t *) tree;
-
-	while (m < i)
-	{
-		current = pop[m++];
-
-		if (current->left != NULL)
-			pop[i++] = current->left;
-
-		if (current->right != NULL)
-			pop[i++] = current->right;
-
-		if (!current->left && current->right)
+		current = queue[front++];
+		if (current == NULL)
 		{
-			return (0);
+			null_seen = 1;
 		}
-		if ((current->left || current->right) && pop[m] == NULL)
+		else
 		{
-			for (j = m; j < i; j++)
+			if (null_seen)
 			{
-				if (pop[j] != NULL)
-				{
-					return (0);
-				}
+				free(queue);
+				return 0;
 			}
+			queue[rear++] = current->left;
+			queue[rear++] = current->right;
 		}
 	}
-	return (1);
-}
+	free(queue);
+	return 1;
 
+}
