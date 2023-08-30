@@ -66,4 +66,6 @@ int binary_tree_recursive(const binary_tree_t *tree, int *pop);
 bst_t *create_bst_node(int value);
 bst_t *bst_insert_recursive(bst_t **tree, int value);
 bst_t *bst_minimum(bst_t *tree);
+bst_t *bst_remove_recursion(bst_t *root, bst_t *ptr, int value);
+bst_t *bst_del(bst_t *root, bst_t *ptr);
 #endif
