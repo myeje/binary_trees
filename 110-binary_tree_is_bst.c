@@ -11,7 +11,7 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 	int pop = -1;
 
 	if (tree == NULL)
-		return 0;
+		return (0);
 
 	return (binary_tree_recursive(tree, &pop));
 }
@@ -29,14 +29,13 @@ int binary_tree_recursive(const binary_tree_t *tree, int *pop)
 		return (1);
 
 	if (!binary_tree_recursive(tree->left, pop))
-	
 		return (0);
 
 	if (*pop != -1 && tree->n <= *pop)
 		return (0);
 
 	*pop = tree->n;
-	
+
 	if (!binary_tree_recursive(tree->right, pop))
 		return (0);
 
