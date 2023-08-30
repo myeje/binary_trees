@@ -79,7 +79,6 @@ int binary_height(const binary_tree_t *tree);
 size_t avl_height(const avl_t *node);
 size_t height(const binary_tree_t *tree);
 int avi_balance_factor(const binary_tree_t *tree);
-avl_t *avl_insert_recursione(avl_t **tree, avl_t *parent,
-			     avl_t **pop, int value);
+avl_t *avl_insert_recursion(avl_t **tree, avl_t *pat, avl_t **pop, int value);
 avl_t *avl_insert(avl_t **tree, int value);
 #endif

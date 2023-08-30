@@ -9,7 +9,7 @@
  */
 avl_t *avl_insert(avl_t **tree, int value)
 {
-	avl_t *new = NULL;
+	avl_t *pop = NULL;
 
 	if (tree == NULL)
 		return (NULL);
@@ -18,42 +18,42 @@ avl_t *avl_insert(avl_t **tree, int value)
 		*tree = binary_tree_node(NULL, value);
 		return (*tree);
 	}
-	avl_insert_recursive(tree, *tree, &new, value);
-	return (new);
+	avl_insert_recursion(tree, *tree, &pop, value);
+	return (pop);
 }
 
 /**
- * avl_insert_recursive - Inserts a value into an AVL tree recursively.
+ * avl_insert_recursion - Inserts a value into an AVL tree recursively.
  * @tree: A double pointer to the root node of AVL tree.
- * @parent: The parent node.
+ * @pat: The parent node.
  * @pop: A double pointer.
  * @value: The value to be insert into AVL tree.
  *
  * Return: A pointer to the new root or NULL.
  */
-avl_t *avl_insert_recursione(avl_t **tree, avl_t *parent, avl_t **pop, int value)
+avl_t *avl_insert_recursion(avl_t **tree, avl_t *pat, avl_t **pop, int value)
 {
 	int b;
 
 	if (*tree == NULL)
-		return (*new = binary_tree_node(parent, value));
+		return (*pop = binary_tree_node(pat, value));
 
 	if ((*tree)->n > value)
 	{
-		(*tree)->left = avl_insert_recursion(&(*tree)->left, *tree, new, value);
+		(*tree)->left = avl_insert_recursion(&(*tree)->left, *tree, pop, value);
 		if ((*tree)->left == NULL)
 			return (NULL);
 	}
 	else if ((*tree)->n < value)
 	{
-		(*tree)->right = avl_insert_recursion(&(*tree)->right, *tree, new, value);
+		(*tree)->right = avl_insert_recursion(&(*tree)->right, *tree, pop, value);
 		if ((*tree)->right == NULL)
 			return (NULL);
 	}
 	else
 		return (*tree);
 
-	b = balance(*tree);
+	b = avi_balance_factor(*tree);
 	if (b > 1 && (*tree)->left->n > value)
 		*tree = binary_tree_rotate_right(*tree);
 	else if (b < -1 && (*tree)->right->n < value)
@@ -73,12 +73,12 @@ avl_t *avl_insert_recursione(avl_t **tree, avl_t *parent, avl_t **pop, int value
 }
 
 /**
- * balance_factor - Calculate the balance factor of an AVL tree.
+ * avi_balance_factor - Calculate the balance factor of an AVL tree.
  * @tree: A pointer to the root node of the tree.
  *
  * Return: Balance factor.
  */
-int balance_factor(const binary_tree_t *tree)
+int avi_balance_factor(const binary_tree_t *tree)
 {
 	return (tree != NULL ? height(tree->left) - height(tree->right) : 0);
 }
@@ -92,6 +92,7 @@ int balance_factor(const binary_tree_t *tree)
 size_t height(const binary_tree_t *tree)
 {
 	size_t pop = 0, lop = 0;
+
 	if (tree != NULL)
 	{
 		pop = tree->left ? 1 + binary_tree_height(tree->left) : 1;
