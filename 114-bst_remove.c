@@ -8,35 +8,28 @@
  */
 bst_t *bst_remove(bst_t *root, int value)
 {
-	bst_t *tmp, *temp, *node;
+	return (bst_remove_recursion(root, root, value));
+}
 
-	if (root == NULL)
-		return (root);
-
-	if (value < root->n)
-		root->left = bst_remove(root->left, value);
-	else if (value > root->n)
-		root->right = bst_remove(root->right, value);
-	else
+/**
+ * bst_remove_recursion - Helper function taht removes binary search tree.
+ * @root: A pointer to the root node of the BST to remove a node from.
+ * @ptr: A pointer to the current node in the BST..
+ * @value: The value to remove.
+ *
+ * Return: a pointer to the root node.
+ */
+bst_t *bst_remove_recursion(bst_t *root, bst_t *ptr, int value)
+{
+	if (ptr != NULL)
 	{
-		if (root->left == NULL)
-		{
-			tmp = root->right;
-			free(root);
-			return (tmp);
-		}
-		else if (root->right == NULL)
-		{
-			temp = root->left;
-			free(root);
-			return (temp);
-		}
-		node = bst_minimum(root->right);
-		root->n = node->n;
-		root->right = bst_remove(root->right, node->n);
+		if (ptr->n == value)
+			return (bst_del(root, ptr));
+		if (ptr->n > value)
+			return (bst_remove_recursion(root, ptr->left, value));
+		return (bst_remove_recursion(root, ptr->right, value));
 	}
-
-	return (root);
+	return (NULL);
 }
 
 /**
@@ -50,4 +43,48 @@ bst_t *bst_minimum(bst_t *tree)
 		tree = tree->left;
 
 	return (tree);
+}
+
+
+/**
+ * bst_del - Deletes a node from a binary search tree.
+ * @root: A pointer to the root node of the BST.
+ * @ptr: A pointer to the node to delete from the BST.
+ *
+ * Return: A pointer to the new root node.
+ */
+bst_t *bst_del(bst_t *root, bst_t *ptr)
+{
+	bst_t *parent, *pop = NULL;
+
+	parent = ptr->parent;
+
+	if (ptr->left == NULL)
+	{
+		if (parent != NULL && parent->left == ptr)
+			parent->left = ptr->right;
+		else if (parent != NULL)
+			parent->right = ptr->right;
+		if (ptr->right != NULL)
+			ptr->right->parent = parent;
+		free(ptr);
+		return (parent == NULL ? ptr->right : root);
+	}
+
+	if (ptr->right == NULL)
+	{
+		if (parent != NULL && parent->left == ptr)
+			parent->left = ptr->left;
+		else if (parent != NULL)
+			parent->right = ptr->left;
+		if (ptr->left != NULL)
+			ptr->left->parent = parent;
+		free(ptr);
+		return (parent == NULL ? ptr->left : root);
+	}
+
+	pop = bst_minimum(ptr->right);
+	ptr->n = pop->n;
+
+	return (bst_del(root, pop));
 }
