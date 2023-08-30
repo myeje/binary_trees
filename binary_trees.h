@@ -61,4 +61,6 @@ void binary_tree_print(const binary_tree_t *tree);
 
 /** Helper function **/
 int binary_tree_recursive(const binary_tree_t *tree, int *pop);
+bst_t *create_bst_node(int value);
+bst_t *bst_insert_recursive(bst_t **tree, int value);
 #endif
