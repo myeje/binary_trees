@@ -11,7 +11,7 @@ bst_t *bst_remove(bst_t *root, int value)
 	bst_t *tmp, *temp, *node;
 
 	if (root == NULL)
-		return (NULL);
+		return (root);
 
 	if (value < root->n)
 		root->left = bst_remove(root->left, value);
