@@ -63,5 +63,5 @@ void binary_tree_print(const binary_tree_t *tree);
 int binary_tree_recursive(const binary_tree_t *tree, int *pop);
 bst_t *create_bst_node(int value);
 bst_t *bst_insert_recursive(bst_t **tree, int value);
-bst_t *array_bst_recursive(int *array, size_t start, size_t end);
+
 #endif
