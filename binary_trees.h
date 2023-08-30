@@ -6,6 +6,7 @@
 #include <limits.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <math.h>
 
 /**
  * struct binary_tree_s - Binary tree node
