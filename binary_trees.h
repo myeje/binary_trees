@@ -49,7 +49,11 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int));
 int binary_tree_is_complete(const binary_tree_t *tree);
 binary_tree_t *binary_tree_rotate_left(binary_tree_t *tree);
 binary_tree_t *binary_tree_rotate_right(binary_tree_t *tree);
+int binary_tree_is_bst(const binary_tree_t *tree);
 
 /*Print function prototype*/
 void binary_tree_print(const binary_tree_t *tree);
+
+/** Helper function **/
+int binary_tree_recursive(const binary_tree_t *tree, int *pop);
 #endif
