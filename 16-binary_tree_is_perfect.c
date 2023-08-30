@@ -39,7 +39,7 @@ size_t binary_tree_count_nodes(const binary_tree_t *tree)
 	{
 		return (0);
 	}
-	
+
 	return (binary_tree_count_nodes(tree->left) + binary_tree_count_nodes(tree->right) + 1);
 }
 
