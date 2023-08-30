@@ -17,13 +17,13 @@ bst_t *bst_remove(bst_t *root, int value)
  * @ptr: A pointer to the current node in the BST..
  * @value: The value to remove.
  *
- * Reture: a pointer to the root node.
+ * Return: a pointer to the root node.
  */
 bst_t *bst_remove_recursion(bst_t *root, bst_t *ptr, int value)
 {
 	if (ptr != NULL)
 	{
-		if(ptr->n == value)
+		if (ptr->n == value)
 			return (bst_del(root, ptr));
 		if (ptr->n > value)
 			return (bst_remove_recursion(root, ptr->left, value));
@@ -56,7 +56,7 @@ bst_t *bst_minimum(bst_t *tree)
 bst_t *bst_del(bst_t *root, bst_t *ptr)
 {
 	bst_t *parent, *pop = NULL;
-       
+
 	parent = ptr->parent;
 
 	if (ptr->left == NULL)

@@ -3,6 +3,7 @@
 
 #define MAX_PATH 1024
 
+#include <limits.h>
 #include <stddef.h>
 #include <stdlib.h>
 
@@ -57,6 +58,7 @@ bst_t *bst_insert(bst_t **tree, int value);
 bst_t *array_to_bst(int *array, size_t size);
 bst_t *bst_search(const bst_t *tree, int value);
 bst_t *bst_remove(bst_t *root, int value);
+int binary_tree_is_avl(const binary_tree_t *tree);
 
 /*Print function prototype*/
 void binary_tree_print(const binary_tree_t *tree);
@@ -68,4 +70,8 @@ bst_t *bst_insert_recursive(bst_t **tree, int value);
 bst_t *bst_minimum(bst_t *tree);
 bst_t *bst_remove_recursion(bst_t *root, bst_t *ptr, int value);
 bst_t *bst_del(bst_t *root, bst_t *ptr);
+int max(int a, int b);
+int binary_tree_is_avl_recursive(const binary_tree_t *tree, int min, int max);
+int binary_height(const binary_tree_t *tree);
+
 #endif
