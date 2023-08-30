@@ -8,7 +8,7 @@
  */
 bst_t *bst_remove(bst_t *root, int value)
 {
-	bst_t *tmp, *node;
+	bst_t *tmp, *temp, *node;
 
 	if (root == NULL)
 		return (NULL);
@@ -23,13 +23,13 @@ bst_t *bst_remove(bst_t *root, int value)
 		{
 			tmp = root->right;
 			free(root);
-			return tmp;
+			return (tmp);
 		}
 		else if (root->right == NULL)
 		{
-			tmp = root->left;
+			temp = root->left;
 			free(root);
-			return (tmp);
+			return (temp);
 		}
 		node = bst_minimum(root->right);
 		root->n = node->n;
@@ -48,6 +48,6 @@ bst_t *bst_minimum(bst_t *tree)
 {
 	while (tree->left != NULL)
 		tree = tree->left;
-	
-	return tree;
+
+	return (tree);
 }
