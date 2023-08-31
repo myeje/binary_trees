@@ -8,27 +8,35 @@
  */
 avl_t *avl_balance(avl_t *node)
 {
-    int balance_factor = binary_tree_balance(node);
-
-    if (balance_factor > 1) {
-        if (binary_tree_balance(node->left) >= 0)
-            return (binary_tree_rotate_right(node));
-        else {
-            node->left = binary_tree_rotate_left(node->left);
-            return (binary_tree_rotate_right(node));
-        }
+	int balance_factor = binary_tree_balance(node);
+	
+	if (balance_factor > 1)
+	{
+		if (binary_tree_balance(node->left) >= 0)
+		{
+			return (binary_tree_rotate_right(node));
+		}
+		else
+		{
+			node->left = binary_tree_rotate_left(node->left);
+			return (binary_tree_rotate_right(node));
+		}
+	}
+	
+	if (balance_factor < -1)
+	{
+		if (binary_tree_balance(node->right) <= 0)
+		{
+			return (binary_tree_rotate_left(node));
+		}
+		else
+		{
+			node->right = binary_tree_rotate_right(node->right);
+			return (binary_tree_rotate_left(node));
+		}
     }
-
-    if (balance_factor < -1) {
-        if (binary_tree_balance(node->right) <= 0)
-            return (binary_tree_rotate_left(node));
-        else {
-            node->right = binary_tree_rotate_right(node->right);
-            return (binary_tree_rotate_left(node));
-        }
-    }
-
-    return (node);
+	
+	return (node);
 }
 
 /**
