@@ -60,8 +60,8 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	}
 
 	height = binary_tree_height(tree);
+	outcome = (1 << height) - 1;
 	actual = binary_tree_count(tree);
-	outcome = pow(2, height) - 1;
 
 	return (actual == outcome);
 }
