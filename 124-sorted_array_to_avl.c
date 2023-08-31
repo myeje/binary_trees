@@ -21,7 +21,6 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 	sub = binary_tree_node(NULL, array[mid]);
 	build_avl(&sub, array, -1, mid);
 	build_avl(&sub, array, mid, size);
-	
 
 	return (sub);
 }
