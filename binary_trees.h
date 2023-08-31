@@ -63,6 +63,8 @@ bst_t *bst_remove(bst_t *root, int value);
 int binary_tree_is_avl(const binary_tree_t *tree);
 avl_t *avl_insert(avl_t **tree, int value);
 avl_t *array_to_avl(int *array, size_t size);
+avl_t *avl_remove(avl_t *root, int value);
+avl_t *avl_balance(avl_t *node);
 int heap_extract(heap_t **root);
 
 /*Print function prototype*/
