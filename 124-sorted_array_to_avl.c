@@ -13,8 +13,8 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 	{
 		return (NULL);
 	}
-
-    return (build_avl(array, 0, size - 1));
+	
+	return (build_avl(array, 0, size - 1));
 }
 
 /**
@@ -27,21 +27,21 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
  */
 avl_t *build_avl(int *array, int start, int end)
 {
-    if (start > end)
+	if (start > end)
 	{
 		return (NULL);
 	}
-
-    int mid = (start + end) / 2;
+	
+	int mid = (start + end) / 2;
 	avl_t *root = binary_tree_node(NULL, array[mid]);
-
-    if (!root)
+	
+	if (!root)
 	{
 		return (NULL);
 	}
-
-    root->left = build_avl(array, start, mid - 1);
+	
+	root->left = build_avl(array, start, mid - 1);
 	root->right = build_avl(array, mid + 1, end);
-
-    return (root);
+	
+	return (root);
 }
