@@ -9,7 +9,7 @@
 avl_t *avl_balance(avl_t *node)
 {
 	int balance_factor = binary_tree_balance(node);
-	
+
 	if (balance_factor > 1)
 	{
 		if (binary_tree_balance(node->left) >= 0)
@@ -22,7 +22,7 @@ avl_t *avl_balance(avl_t *node)
 			return (binary_tree_rotate_right(node));
 		}
 	}
-	
+
 	if (balance_factor < -1)
 	{
 		if (binary_tree_balance(node->right) <= 0)
@@ -34,8 +34,8 @@ avl_t *avl_balance(avl_t *node)
 			node->right = binary_tree_rotate_right(node->right);
 			return (binary_tree_rotate_left(node));
 		}
-    }
-	
+	}
+
 	return (node);
 }
 
@@ -69,7 +69,7 @@ avl_t *avl_remove(avl_t *root, int value)
 		{
 			sub = root->left ? root->left : root->right;
 			free(root);
-			return sub;
+			return (sub);
 		}
 		sub = root->right;
 		while (sub->left)
