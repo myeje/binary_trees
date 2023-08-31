@@ -64,7 +64,7 @@ avl_t *array_to_avl(int *array, size_t size);
 avl_t *avl_remove(avl_t *root, int value);
 avl_t *avl_balance(avl_t *node);
 avl_t *sorted_array_to_avl(int *array, size_t size);
-void sata_helper(avl_t **root, int *array, size_t lo, size_t hi);
+void build_avl(avl_t **root, int *array, size_t start, size_t end);
 int heap_extract(heap_t **root);
 
 /*Print function prototype*/

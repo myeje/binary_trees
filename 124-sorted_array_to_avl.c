@@ -9,42 +9,44 @@
  */
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
-	avl_t *tree = NULL;
-	size_t middle;
+	size_t mid;
+	avl_t *sub = NULL;
 
-	if (!array)
+	if (!array || size == 0)
+	{
 		return (NULL);
-	middle = (size - 1) / 2;
-	tree = binary_tree_node(NULL, array[middle]);
+	}
 
-	sata_helper(&tree, array, -1, middle);
-	sata_helper(&tree, array, middle, size);
+	mid = (size - 1) / 2;
+	sub = binary_tree_node(NULL, array[mid]);
+	build_avl(&sub, array, -1, mid);
+	build_avl(&sub, array, mid, size);
+	
 
-	return (tree);
+	return (sub);
 }
 
-
 /**
- * sata_helper - helper that builds an AVL tree from an array
- * @root: double pointer to the root node of the subtree
- * @array: a pointer to the first element of the array to be converted
- * @lo: lower bound index
- * @hi: upper bound index
+ * build_avl - function to build an AVL tree from a sorted array
+ * @root: double pointer to root node of subtree
+ * @array: pointer to the first element of the array
+ * @start: start of the current subtree
+ * @end: end of the current subtree.
  */
-void sata_helper(avl_t **root, int *array, size_t lo, size_t hi)
+void build_avl(avl_t **root, int *array, size_t start, size_t end)
 {
-	avl_t *new = NULL;
-	size_t middle;
+	avl_t *temp = NULL;
+	size_t mid;
 
-	if (hi - lo > 1)
+	if (end - start > 1)
 	{
-		middle = (hi - lo) / 2 + lo;
-		new = binary_tree_node(*root, array[middle]);
-		if (array[middle] > (*root)->n)
-			(*root)->right = new;
-		else if (array[middle] < (*root)->n)
-			(*root)->left = new;
-		sata_helper(&new, array, lo, middle);
-		sata_helper(&new, array, middle, hi);
+		mid = (start + end) / 2;
+		temp = binary_tree_node(*root, array[mid]);
+		if (array[mid] > (*root)->n)
+			(*root)->right = temp;
+		else if (array[mid] < (*root)->n)
+			(*root)->left = temp;
+		build_avl(&temp, array, start, mid);
+		build_avl(&temp, array, mid, end);
 	}
 }
