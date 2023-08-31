@@ -67,10 +67,6 @@ avl_t *sorted_array_to_avl(int *array, size_t size);
 void build_avl(avl_t **root, int *array, size_t start, size_t end);
 int heap_extract(heap_t **root);
 
-int binary_tree_is_heap(const binary_tree_t *tree);
-int binary_tree_is_complete(const binary_tree_t *tree);
-int binary_tree_has_max_heap_property(const binary_tree_t *tree);
-size_t binary_tree_height(const binary_tree_t *tree);
 /*Print function prototype*/
 void binary_tree_print(const binary_tree_t *tree);
 
