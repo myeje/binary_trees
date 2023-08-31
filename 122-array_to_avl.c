@@ -11,7 +11,7 @@ avl_t *array_to_avl(int *array, size_t size)
 {
 	avl_t *root = NULL;
 	size_t a;
-	
+
 	if (!array)
 	{
 		return (NULL);
