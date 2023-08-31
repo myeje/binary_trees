@@ -57,7 +57,7 @@ avl_t *avl_remove(avl_t *root, int value)
 	}
 	else
 	{
-		if (!root->right || root->left)
+		if (!root->right || !root->left)
 		{
 			sub = root->left ? root->left : root->right;
 			free(root);
