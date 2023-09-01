@@ -26,7 +26,7 @@ size_t sum_height(const binary_tree_t *tree)
 }
 
 /**
- * Extract - Using pre-order to traversal.
+ * extract - Using pre-order to traversal.
  * @tree: pointer to the root node of the tree.
  * @pop: double pointer
  * @size: size of tree
