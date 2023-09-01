@@ -91,6 +91,8 @@ avl_t *avl_insert_recursion(avl_t **tree, avl_t *pat, avl_t **pop, int value);
 avl_t *avl_insert(avl_t **tree, int value);
 size_t heap_size(heap_t *root);
 void heap_swap(heap_t *a, heap_t *b);
-void extract_recur(heap_t *tree);
-heap_t *max_count(heap_t *tree);
+void heapify(heap_t *root);
+void extract(heap_t *tree, heap_t **pop, size_t size);
+size_t sum_height(const binary_tree_t *tree);
+
 #endif
