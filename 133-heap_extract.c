@@ -1,31 +1,6 @@
 #include "binary_trees.h"
 
 /**
- * sum_height - Calculate heights of a binary tree
- * @tree: pointer to the root node of the tree.
- *
- * Return: Lenght of height or 0 if NULL.
- */
-size_t sum_height(const binary_tree_t *tree)
-{
-	size_t size = 0;
-	size_t size2 = 0;
-
-	if (!tree)
-		return (0);
-
-	if (tree->left)
-		size = 1 + sum_height(tree->left);
-
-	if (tree->right)
-		size2 = 1 + sum_height(tree->right);
-
-	if (size > size2)
-		return (size);
-	return (size2);
-}
-
-/**
  * extract - Using pre-order to traversal.
  * @tree: pointer to the root node of the tree.
  * @pop: double pointer
@@ -82,6 +57,31 @@ void heapify(heap_t *root)
 		b->n = val;
 		tmp = b;
 	}
+}
+
+/**
+ * sum_height - Calculate heights of a binary tree
+ * @tree: pointer to the root node of the tree.
+ *
+ * Return: Lenght of height or 0 if NULL.
+ */
+size_t sum_height(const binary_tree_t *tree)
+{
+	size_t size = 0;
+	size_t size2 = 0;
+
+	if (!tree)
+		return (0);
+
+	if (tree->left)
+		size = 1 + sum_height(tree->left);
+
+	if (tree->right)
+		size2 = 1 + sum_height(tree->right);
+
+	if (size > size2)
+		return (size);
+	return (size2);
 }
 
 /**
