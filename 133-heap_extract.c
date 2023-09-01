@@ -42,7 +42,7 @@ void extract(heap_t *tree, heap_t **pop, size_t size)
 		*pop = tree;
 	size--;
 
-	extract(tree->left, pop, size));
+	extract(tree->left, pop, size);
 	extract(tree->right, pop, size);
 }
 
