@@ -48,7 +48,7 @@ avl_t *avl_balance(avl_t *node)
  */
 avl_t *avl_remove(avl_t *root, int value)
 {
-	avl_t *sub = NULL;
+	avl_t *sub;
 
 	if (!root)
 	{
