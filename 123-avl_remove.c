@@ -48,7 +48,7 @@ avl_t *avl_balance(avl_t *node)
  */
 avl_t *avl_remove(avl_t *root, int value)
 {
-	avl_t *sub;
+	avl_t *sub = NULL;
 
 	if (!root)
 	{
@@ -78,7 +78,6 @@ avl_t *avl_remove(avl_t *root, int value)
 		}
 		root->n = sub->n;
 		root->right = avl_remove(root->right, sub->n);
-		free(sub);
 	}
 
 	root = avl_balance(root);
