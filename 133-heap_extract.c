@@ -1,80 +1,82 @@
 #include "binary_trees.h"
 
 /**
- * heap_extract - this function gets number of nodes in a heap
- * @root: A pointer to the root node
+ * max_count - Calculates the max of a binary tree.
+ * @node: Pointer to the root node of the binary tree.
+ * Return: max of the binary tree.
+ */
+heap_t *max_count(heap_t *tree)
+{
+	heap_t *pop, *lop, *pol;
+
+	if (!tree->left)
+		return (tree);
+	lop = max_count(tree->left);
+	if (lop->n > tree->n)
+		pop = lop;
+	else
+		pop = tree;
+	if (tree->right)
+	{
+		pol = max_count(tree->right);
+		if (pol->n > pop->n)
+			pop = pol;
+		else
+			pop = tree;
+	}
+	return (pop);
+}
+
+/**
+ * extrect_recur - extract max from binary tree.
+ * @tree:Pointer to the root node of the binary tree.
  *
- * Return: return 0 or the number of heap nodes.
-*/
-size_t heap_count(heap_t *root) {
-    if (root == NULL) {
-        return 0;
-    }
+ * Return: no return(void)
+ */
+void extract_recur(heap_t *tree)
+{
+	heap_t *pop, *lop;
 
-    return (1 + heap_count(root->left) + heap_count(root->right));
+	lop = NULL;
+	if (!tree->left)
+		return;
+	pop = max_count((tree)->left);
+	if (!tree->right)
+		lop = max_count(tree->right);
+	if (lop && lop->n > pop->n)
+		pop = lop;
+	tree->n = pop->n;
+	if (!pop->left)
+	{
+		if (pop->parent && pop->parent->left == pop)
+			pop->parent->left = NULL;
+		free(pop);
+	}
+	else
+		extract_recur(pop);
 }
 
 /**
- * heap_extract - this function swaps 2 heap nodes
- * @a: first heap node
- * @b: second heap node
-*/
-void heap_swap(heap_t *a, heap_t *b) {
-    int temp = a->n;
-    a->n = b->n;
-    b->n = temp;
-}
-
-/**
- * heapify_down - this function heapify the heap
- * @root: A pointer to the root node
-*/
-void heapify_down(heap_t *root) {
-    heap_t *largest = root;
-    heap_t *left = root->left;
-    heap_t *right = root->right;
-
-    if (left && left->n > largest->n) {
-        largest = left;
-    }
-
-    if (right && right->n > largest->n) {
-        largest = right;
-    }
-
-    if (largest != root) {
-        heap_swap(root, largest);
-        heapify_down(largest);
-    }
-}
-
-/**
- * heap_extract - this function extracts root node
- * @root: A pointer to the root node
+ * heap_extract - Extract root node of Max binary heap.
+ * @root: A doubly pointer to the root node.
  *
- * Return: return 0 or the extracted value.
-*/
-int heap_extract(heap_t **root) {
-    if (*root == NULL) {
-        return (0);
-    }
+ * Return: value stored in the root node
+ */
+int heap_extract(heap_t **root)
+{
+	int pop;
 
-    int extracted_value = (*root)->n;
-    size_t node_count = heap_count(*root);
-    heap_t *last_node = heap_nth_node(*root, node_count);
+	if (!*root)
+		return (0);
 
-    heap_swap(*root, last_node);
-    if (last_node->parent && last_node->parent->right == last_node) {
-        last_node->parent->right = NULL;
-    } else if (last_node->parent && last_node->parent->left == last_node) {
-        last_node->parent->left = NULL;
-    }
-
-    free(last_node);
-
-    if (*root) {
-        heapify_down(*root);
-    }
-
-    return (extracted_value);
+	pop = (*root)->n;
+	if (!(*root)->left)
+	{
+		pop = (*root)->n;
+		free(*root);
+		*root = NULL;
+		return (pop);
+	}
+	extract_recur(*root);
+	return(pop);
 }
