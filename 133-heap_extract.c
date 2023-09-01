@@ -50,8 +50,8 @@ void extract_recur(heap_t *tree)
 	{
 		if (pop->parent && pop->parent->left == pop)
 			pop->parent->left = NULL;
-		if (pop->parent && pop->parent->left == pop)
-			pop->parent->left = NULL;
+		if (pop->parent && pop->parent->right == pop)
+			pop->parent->right = NULL;
 		free(pop);
 	}
 	else
