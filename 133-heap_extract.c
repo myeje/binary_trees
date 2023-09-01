@@ -2,7 +2,8 @@
 
 /**
  * max_count - Calculates the max of a binary tree.
- * @node: Pointer to the root node of the binary tree.
+ * @tree: Pointer to the root node of the binary tree.
+ *
  * Return: max of the binary tree.
  */
 heap_t *max_count(heap_t *tree)
@@ -28,16 +29,15 @@ heap_t *max_count(heap_t *tree)
 }
 
 /**
- * extrect_recur - extract max from binary tree.
+ * extract_recur - extract max from binary tree.
  * @tree:Pointer to the root node of the binary tree.
  *
  * Return: no return(void)
  */
 void extract_recur(heap_t *tree)
 {
-	heap_t *pop, *lop;
+	heap_t *pop, *lop = NULL;
 
-	lop = NULL;
 	if (!tree->left)
 		return;
 	pop = max_count((tree)->left);
@@ -48,6 +48,8 @@ void extract_recur(heap_t *tree)
 	tree->n = pop->n;
 	if (!pop->left)
 	{
+		if (pop->parent && pop->parent->left == pop)
+			pop->parent->left = NULL;
 		if (pop->parent && pop->parent->left == pop)
 			pop->parent->left = NULL;
 		free(pop);
@@ -78,5 +80,5 @@ int heap_extract(heap_t **root)
 		return (pop);
 	}
 	extract_recur(*root);
-	return(pop);
+	return (pop);
 }
